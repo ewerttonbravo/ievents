@@ -1,0 +1,57 @@
+<h:form xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich" 
+	prependId="false">
+	
+	<h:outputLabel value="Name" for="user_name" />
+	<br />
+	<h:inputText value="" id="user_name" label="Name">
+		<f:validateRequired />
+		<rich:validator />
+	</h:inputText>
+	<br />
+	<rich:message for="user_name" />
+
+	<h:outputLabel value="Email" for="user_email" />
+	<br />
+	<h:inputText value="" id="user_email" label="Email">
+		<f:validateRequired />
+		<rich:validator />
+	</h:inputText>
+	<br />
+	<rich:message for="user_email" />
+
+	<h:outputLabel value="Password" for="user_password" />
+	<br />
+	<h:inputSecret value="" id="user_password" label="Password">
+		<f:validateRequired />
+		<rich:validator />
+	</h:inputSecret>
+	<br />
+	<rich:message for="user_password" />
+
+	<h:outputLabel value="Birthday" for="user_dob" />
+	<br />
+	<rich:calendar value="" id="user_dob" label="Birthday">
+		<f:validateRequired />
+		<rich:validator />
+	</rich:calendar>
+	<br />
+	<rich:message for="user_dob" />
+
+	<h:outputLabel value="Role" for="user_role" />
+	<br />
+	<h:selectOneMenu value="" id="user_role" label="Role">
+		<f:validateRequired />
+		<rich:validator />
+		<f:selectItem itemLabel="User" value="user" />
+		<f:selectItem itemLabel="Admin" value="admin" />
+	</h:selectOneMenu>
+	<br />
+	<rich:message for="user_role" />
+
+	<h:commandButton action="index" value="Cancel" immediate="true" />
+	<h:commandButton action="show" value="${label}" />
+</h:form>

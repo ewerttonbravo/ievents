@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="/templates/application.xhtml">
+	<ui:define name="body">
+		<h:outputLabel value="Name" for="user_name" />
+		<br />
+		<h:outputText value="" id="user_name" label="Name">
+		</h:outputText>
+		<br />
+
+		<h:outputLabel value="Email" for="user_email" />
+		<br />
+		<h:outputText value="" id="user_email" label="Email">
+		</h:outputText>
+		<br />
+
+		<h:outputLabel value="Password" for="user_password" />
+		<br />
+		<h:outputText value="************" id="user_password" 
+			label="Password" />
+		<br />
+
+		<h:outputLabel value="Birthday" for="user_dob" />
+		<br />
+		<h:outputText value="" id="user_dob" label="Birthday" />
+		<br />
+
+		<h:outputLabel value="Role" for="user_role" />
+		<br />
+		<h:outputText value="" id="user_role" label="Role" />
+		<br />
+
+		<h:commandButton action="index" value="Back" immediate="true" />
+	</ui:define>
+</ui:composition>
+</html>
