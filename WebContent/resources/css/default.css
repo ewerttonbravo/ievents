@@ -1,1 +1,80 @@
 @CHARSET "UTF-8";
+
+body {
+	margin: 0;
+	min-width: 960px;
+}
+
+div#top {
+	background-color: #333333;
+}
+
+div#logo img {
+	border: 0px;
+	margin: 10px 0 10px 5px;
+}
+
+div#session {
+	color: #FFF;
+	text-align: right;
+}
+
+div#nav {
+	background-color: #666666;
+}
+
+div#nav a {
+	color: #FFF;
+	font-size: 14px;
+	padding-bottom: 6px;
+	padding-top: 6px;
+	text-decoration: none;
+}
+
+div#nav a:hover {
+	color: #33CC00;
+	font-weight: bold;
+}
+
+div#body {
+	
+}
+
+div#footer {
+	background-color: #333333;
+	color: #FFF;
+	font-size: 12px;
+	line-height: 30px;
+	text-align: center;
+}
+
+/** HOME **/
+.ret_home {
+	background-image: url("/ievents/resources/img/ret_home.png");
+	background-repeat: no-repeat;
+	min-height: 288px;
+}
+
+.main {
+	background-color: #CCCCCC;
+	padding-left: 16px;
+}
+
+/*******************************************************************
+	table classes
+*******************************************************************/
+.table {
+	margin: 1em 0 1em 0;
+  	border-collapse: collapse;
+	width: 100%;
+}
+	.table th {
+	  text-align: center;
+	}
+	.table th, .table td {
+	border: 1px silver solid;
+	  padding: 0.2em;
+	}
+td.centered {
+	text-align: center;
+}                                                        

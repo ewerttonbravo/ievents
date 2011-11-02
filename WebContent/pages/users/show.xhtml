@@ -4,18 +4,21 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<ui:composition template="/templates/application.xhtml">
-	<ui:define name="body">
-		<h:outputLabel value="Name" for="user_name" />
+<ui:composition template="/templates/internal.xhtml">
+	<ui:param name="title" value="Usuario: #{userBean.user.name}"></ui:param>
+	<ui:define name="left">
+		<h:outputLabel value="Name:" for="user_name" />
 		<br />
-		<h:outputText value="" id="user_name" label="Name">
+		<h:outputText value="#{userBean.user.name}" id="user_name" label="Name">
 		</h:outputText>
+		<br />
 		<br />
 
 		<h:outputLabel value="Email" for="user_email" />
 		<br />
-		<h:outputText value="" id="user_email" label="Email">
+		<h:outputText value="#{userBean.user.email}" id="user_email" label="Email">
 		</h:outputText>
+		<br />
 		<br />
 
 		<h:outputLabel value="Password" for="user_password" />
@@ -23,18 +26,21 @@
 		<h:outputText value="************" id="user_password" 
 			label="Password" />
 		<br />
+		<br />
 
 		<h:outputLabel value="Birthday" for="user_dob" />
 		<br />
-		<h:outputText value="" id="user_dob" label="Birthday" />
+		<h:outputText value="#{userBean.user.dob}" id="user_dob" label="Birthday" />
+		<br />
 		<br />
 
 		<h:outputLabel value="Role" for="user_role" />
 		<br />
-		<h:outputText value="" id="user_role" label="Role" />
+		<h:outputText value="#{userBean.user.role}" id="user_role" label="Role" />
 		<br />
-
-		<h:commandButton action="index" value="Back" immediate="true" />
+		<br />
+		
+		<h:button outcome="index" value="Back" />
 	</ui:define>
 </ui:composition>
 </html>

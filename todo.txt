@@ -1,0 +1,46 @@
+TODO:
+
+1) Criar o template principal: templates/application.xhtml
+2) Criar um arquivo de CSS: resources/css/nomeDoArquivo.css
+3) Criar a homepage incluindo o formulário de Login: pages/index.xhtml
+4) Criar o model User:
+	-id:Long
+	-name:String
+	-email: String
+	-password:String
+	-dob: Date
+	-role:String
+=======================================================================
+5) Crie dentro do folder pages/users as páginas
+	- index.xhtml (tabela de users)
+	- edit.xhtml  (edição de user)
+	- new.xhtml   (cadastro de user)
+	- show.xhtml  (visualização user)
+Observações:
+	DRY
+	Use Richfaces (dataTable, validator, message, calendar, etc)
+=======================================================================	
+6) Crie um ManagedBean UserBean com uma lista de user, métodos para interagir com as views e permitir as operações de CRUD na lista.
+
+\\ 10.20.9.6
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

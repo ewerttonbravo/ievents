@@ -7,8 +7,9 @@
 <ui:composition template="/templates/application.xhtml">
 	<ui:define name="body">
 		<ui:include src="_form.xhtml">
-			<ui:param name="label" value="Update" />
+			<ui:param name="exp" value="update" />
 		</ui:include>
+		<h:button outcome="index" value="Cancel" />
 	</ui:define>
 </ui:composition>
 </html>

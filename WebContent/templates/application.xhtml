@@ -4,21 +4,31 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<h:head>
-	<ui:insert name="title">iEvents</ui:insert>
-	<h:outputStylesheet library="css" name="default"></h:outputStylesheet>
-</h:head>
-<h:body>
-	<div id="top">
-		<ui:insert name="top">
-			<h1>iEvents</h1>
-		</ui:insert>
-	</div>
-	<div id="body">
-		<ui:insert name="body"></ui:insert>
-	</div>
-	<div id="footer">
-		######## ### ##### - 2011
-	</div>
-</h:body>
+<f:view>
+	<h:head>
+		<ui:insert name="title"><title>iEvents</title></ui:insert>
+		<h:outputStylesheet library="css" name="default.css"></h:outputStylesheet>
+		<h:outputStylesheet library="css" name="fluid_grid.css"></h:outputStylesheet>
+	</h:head>
+	<h:body>
+		<div id="container" class="container_12">
+			<div id="top" class="grid_12">
+				<div id="logo" class="grid_3">
+					<h:graphicImage value="/resources/img/logo.png" />
+				</div>
+				<div id="session" class="grid_8">
+				</div>
+			</div>
+			<div id="nav" class="grid_12">
+				<ui:include src="/templates/navigation.xhtml" />
+			</div>
+			<div id="body" class="grid_12">
+				<ui:insert name="body">texto</ui:insert>
+			</div>
+			<div id="footer" class="grid_12">
+				<h:outputText value="Ewertton Bravo© - Todos os Direitos Reservados - 2011" />
+			</div>
+		</div>
+	</h:body>
+</f:view>
 </html>

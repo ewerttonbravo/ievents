@@ -5,29 +5,50 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:rich="http://richfaces.org/rich">
 
-	<ui:composition template="/templates/application.xhtml">
-		<ui:define name="body">
+	<ui:composition template="/templates/internal.xhtml">
+		<ui:param name="title" value="Usuarios Cadastrados"></ui:param>
+		<ui:define name="left">
 			<h:form>
-				<rich:dataTable>
-					<rich:column>
-						<f:facet name="header">
-							<h:outputText value="ID" />
-						</f:facet>
-					</rich:column>
+				<h:commandLink value="New User" action="#{userBean.newUser}" />
+			</h:form>
+			
+			<h:outputText value="Nenhum usuario encontrado"
+				rendered="#{empty userBean.users}" />
+				
+			<h:form rendered="#{not (empty userBean.users)}">
+				<rich:dataTable value="#{userBean.users}" var="user"
+					styleClass="table">
 					<rich:column>
 						<f:facet name="header">
 							<h:outputText value="Name" />
 						</f:facet>
+						<h:outputText value="#{user.name}" />
 					</rich:column>
 					<rich:column>
 						<f:facet name="header">
 							<h:outputText value="Email" />
 						</f:facet>
+						<h:outputText value="#{user.email}" />
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">
+							<h:outputText value="Role" />
+						</f:facet>
+						<h:outputText value="#{user.role}" />
 					</rich:column>
 					<rich:column>
 						<f:facet name="header">
 							<h:outputText value="Actions" />
 						</f:facet>
+						<h:commandLink value="Edit" action="edit">
+							<f:setPropertyActionListener target="#{userBean.user}" 
+								value="#{user}" />
+						</h:commandLink>
+						<h:outputText value="   |    " />
+						<h:commandLink value="Delete" action="#{userBean.removeUser}">
+							<f:setPropertyActionListener target="#{userBean.user}" 
+								value="#{user}" />
+						</h:commandLink>
 					</rich:column>	
 				</rich:dataTable>
 			</h:form>						

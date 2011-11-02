@@ -5,11 +5,13 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:rich="http://richfaces.org/rich">
 
-	<ui:composition template="/templates/application.xhtml">
-		<ui:define name="body">
+	<ui:composition template="/templates/internal.xhtml">
+		<ui:param name="title" value="Cadastro de Usuarios"></ui:param>
+		<ui:define name="left">
 			<ui:include src="_form.xhtml">
-				<ui:param name="label" value="Save" />
+				<ui:param name="exp" value="new" />
 			</ui:include>
+			<h:button outcome="index" value="Cancel" />
 		</ui:define>
 	</ui:composition>
 </html>
