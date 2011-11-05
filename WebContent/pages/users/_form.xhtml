@@ -17,6 +17,7 @@
 	<br />
 	<h:inputText value="#{userBean.user.email}" id="user_email" label="Email"
 		required="true">
+		<f:validator validatorId="emailValidator" />
 		<f:validateLength minimum="3" maximum="60" />
 		<rich:validator />
 	</h:inputText>
