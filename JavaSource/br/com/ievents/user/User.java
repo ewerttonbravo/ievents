@@ -14,8 +14,17 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import br.com.ievents.events.Event;
+import br.com.ievents.validator.Role;
 
 
 /**
@@ -35,18 +44,28 @@ public class User {
 	private Long id;
 	
 	@Column(name="user_name", nullable = false)
+	@NotEmpty
+	@NotNull
 	private String name;
 	
 	@Column(name="email", nullable = false)
+	@NotNull
+	@NotEmpty
+	@Size(min=3, max=60)
+	@Email
 	private String email;
 	
 	@Column(name="password", nullable = false)
+	@Size(min=6, max=8)
+	@NotEmpty
 	private String password;
 	
 	@Temporal(TemporalType.DATE)
+	@Past
 	private Date dob;
 	
 	@Column(name="role", nullable = false)
+	@Role
 	private String role;
 	
 	@OneToMany(mappedBy="user")

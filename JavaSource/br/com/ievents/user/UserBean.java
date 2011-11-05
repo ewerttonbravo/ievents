@@ -8,6 +8,9 @@ import javax.annotation.PreDestroy;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.component.html.HtmlCommandLink;
+import javax.faces.component.html.HtmlInputText;
+import javax.faces.event.ActionEvent;
 import javax.persistence.EntityManager;
 
 import br.com.ievents.util.AbstractManagedBean;
@@ -76,7 +79,7 @@ public class UserBean extends AbstractManagedBean {
 	 * Remove um {@code User} da lista e direciona para index.xhtml
 	 * @return
 	 */
-	public String removeUser() {
+	public void removeUser(ActionEvent event) {
 		try {
 			userDao.delete(user);
 			buscarUsers();
@@ -85,9 +88,7 @@ public class UserBean extends AbstractManagedBean {
 		} catch (Exception e) {
 			addErrorMessage("Houve um problema na operacao, contate o suporte tecnico.");
 			e.printStackTrace();
-			return null;
 		}
-		return "index";
 	}
 	
 	public String updateUser() {

@@ -45,7 +45,7 @@
 								value="#{user}" />
 						</h:commandLink>
 						<h:outputText value="   |    " />
-						<h:commandLink value="Delete" action="#{userBean.removeUser}">
+						<h:commandLink value="Delete" actionListerner="#{userBean.removeUser}">
 							<f:setPropertyActionListener target="#{userBean.user}" 
 								value="#{user}" />
 						</h:commandLink>

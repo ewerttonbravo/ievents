@@ -6,53 +6,50 @@
 	xmlns:a4j="http://richfaces.org/a4j" 
 	prependId="false">                
 	
-	<h:outputLabel value="Name" for="user_name" />
-	<br />
-	<h:inputText value="#{userBean.user.name}" id="user_name" label="Name">
-	</h:inputText>
-	<rich:message for="user_name" />
-	<br />
-
-	<h:outputLabel value="Email" for="user_email" />
-	<br />
-	<h:inputText value="#{userBean.user.email}" id="user_email" label="Email"
-		required="true">
-		<f:validator validatorId="emailValidator" />
-		<f:validateLength minimum="3" maximum="60" />
-		<rich:validator />
-	</h:inputText>
-	<rich:message for="user_email" />
-	<br />
-
-	<h:outputLabel value="Password" for="user_password" />
-	<br />
-	<h:inputSecret value="#{userBean.user.password}" id="user_password" label="Password"
-		required="true">
-		<f:validateLength minimum="6" maximum="8" />
-		<rich:validator />
-	</h:inputSecret>
-	<rich:message for="user_password" />
-	<br />
+	<f:validateBean>
 	
-	<h:outputLabel value="Birthday" for="user_dob" />
-	<br />
-	<rich:calendar value="#{userBean.user.dob}" id="user_dob" label="Birthday">
-		<rich:validator />
-	</rich:calendar>
-	<rich:message for="user_dob" />
-	<br />
-
-	<h:outputLabel value="Role" for="user_role" />
-	<br />
-	<h:selectOneMenu value="#{userBean.user.role}" id="user_role" label="Role"
-		hideNoSelectionOption="false" required="true">
-		<rich:validator />
-		<f:selectItem itemLabel="Escolha..." itemValue="" />
-		<f:selectItem itemLabel="User" itemValue="user" />
-		<f:selectItem itemLabel="Admin" itemValue="admin" />
-	</h:selectOneMenu>
-	<rich:message for="user_role" />
-
+		<h:outputLabel value="Name" for="user_name" />
+		<br />
+		<h:inputText value="#{userBean.user.name}" id="user_name" label="Name">
+		</h:inputText>
+		<rich:message for="user_name" />
+		<br />
+	
+		<h:outputLabel value="Email" for="user_email" />
+		<br />
+		<h:inputText value="#{userBean.user.email}" id="user_email" label="Email"
+			required="true">
+			<f:validator validatorId="emailValidator" />
+		</h:inputText>
+		<rich:message for="user_email" />
+		<br />
+	
+		<h:outputLabel value="Password" for="user_password" />
+		<br />
+		<h:inputSecret value="#{userBean.user.password}" id="user_password" label="Password">
+		</h:inputSecret>
+		<rich:message for="user_password" />
+		<br />
+		
+		<h:outputLabel value="Birthday" for="user_dob" />
+		<br />
+		<rich:calendar value="#{userBean.user.dob}" id="user_dob" label="Birthday">
+		</rich:calendar>
+		<rich:message for="user_dob" />
+		<br />
+	
+		<h:outputLabel value="Role" for="user_role" />
+		<br />
+		<h:selectOneMenu value="#{userBean.user.role}" id="user_role" label="Role"
+			hideNoSelectionOption="false" required="true">
+			<rich:validator />
+			<f:selectItem itemLabel="Escolha..." itemValue="" />
+			<f:selectItem itemLabel="User" itemValue="useRr" />
+			<f:selectItem itemLabel="Admin" itemValue="admin" />
+		</h:selectOneMenu>
+		<rich:message for="user_role" />
+	
+	</f:validateBean>
 	<br />
 	<h:commandButton action="#{userBean.saveUser}" rendered="#{empty userBean.user.id}" 
 		value="Save"/>
