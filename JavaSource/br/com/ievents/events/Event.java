@@ -29,6 +29,8 @@ public class Event {
 	@Column(nullable=true)
 	private String text;
 	
+	private Double value;
+	
 	@ManyToOne(optional=false)
 	private User user;
 	
@@ -60,6 +62,14 @@ public class Event {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+	
+	public Double getValue() {
+		return value;
+	}
+
+	public void setValue(Double value) {
+		this.value = value;
 	}
 
 	@Override

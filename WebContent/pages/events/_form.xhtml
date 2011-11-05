@@ -23,7 +23,13 @@
 	</h:inputTextarea>
 	<rich:message for="text" />
 	<br />
-
+	
+	<h:outputLabel value="Value:" for="event_value" /><br/>
+	<h:inputText value="#{eventBean.event.value}" id="event_value">
+		<f:converter converterId="custom.Converter"></f:converter>
+	</h:inputText>
+	<rich:message for="event_value"></rich:message>
+	
 	<br />
 	<h:commandButton action="#{eventBean.saveEvent}" rendered="#{empty eventBean.event.id}" 
 		value="Save"/>
