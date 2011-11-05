@@ -1,0 +1,32 @@
+<h:form xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j" 
+	prependId="false">                
+	
+	<h:outputLabel value="Name" for="event_name" />
+	<br />
+	<h:inputText binding="#{eventBean.nameInputText}" id="event_name" label="Name"
+		>
+	</h:inputText>
+	<rich:message for="event_name" />
+	<br />
+
+	<h:outputLabel value="Text" for="text" />
+	<br />
+	<h:inputTextarea binding="#{eventBean.textInputTextarea}" id="text" label="Text"
+		required="true">
+		<f:validateLength maximum="255" />
+		<rich:validator />
+	</h:inputTextarea>
+	<rich:message for="text" />
+	<br />
+
+	<br />
+	<h:commandButton action="#{eventBean.saveEvent}" rendered="#{empty eventBean.event.id}" 
+		value="Save"/>
+	<h:commandButton action="#{eventBean.updateEvent}" rendered="#{not empty eventBean.event.id}" 
+		value="Update"/>
+</h:form>

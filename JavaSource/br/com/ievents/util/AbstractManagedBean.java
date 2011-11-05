@@ -5,6 +5,8 @@ import java.util.Map;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * 
@@ -20,6 +22,14 @@ public abstract class AbstractManagedBean {
 		if (getCurrentFacesContext() != null)
 			return getCurrentFacesContext().getExternalContext();
 		return null;
+	}
+	
+	public HttpServletRequest getRequest() {
+		return (HttpServletRequest) getExternalContext().getRequest();
+	}
+	
+	public HttpSession getHttpSession() {
+		return getRequest().getSession();
 	}
 
 	public Map<String, String> getParameterMap() {

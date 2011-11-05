@@ -29,6 +29,7 @@ public class JPAFilter implements javax.servlet.Filter {
 		EntityManager em = emf.createEntityManager();
 		((HttpServletRequest) request).getSession().setAttribute("entityManager", em);
 		
+		emf.createEntityManager();
 		chain.doFilter(request, response);
 	}
 

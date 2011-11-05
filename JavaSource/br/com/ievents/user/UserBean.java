@@ -33,6 +33,8 @@ public class UserBean extends AbstractManagedBean {
 	@PostConstruct
 	public void init() {
 		userDao = new UserDao(entityManager);
+		User u = userDao.find(2l);
+		getHttpSession().setAttribute("currentUser", u);
 	}
 	
 	public void buscarUsers() {
@@ -52,6 +54,12 @@ public class UserBean extends AbstractManagedBean {
 		try {
 			addInfoMessage("Usuario Cadastrado com sucesso!");
 			userDao.save(user);
+			
+			// Simulando uma autenticacao, com usuario na session
+			User u = (User) getHttpSession().getAttribute("currentUser");
+			if (null == u)
+				getHttpSession().setAttribute("currentUser", user);
+			
 			buscarUsers();
 		} catch (Exception e) {
 			addErrorMessage("Houve um problema na operacao, contate o suporte tecnico.");

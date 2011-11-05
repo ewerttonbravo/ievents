@@ -31,11 +31,18 @@ Observações:
 8) Criar o UserDao herdando de GenericDao
 9) Criar a Classe JPAUtil.java
 
-
-++++
 10) Anotar a entidade User.java
 11) Alterar UserBean.java para guardar no Banco de Dados
-++++
+
+
+/*
+ * Adicionando o objeto de negócio: Eventos
+*/
+12) Crie sua segunda entidade relacionada com User.java
+13) Crie seu Dao e um ManagedBean para ela
+14) Crie as views
+15) Disponibilize um currentUser no escopo de sessão
+
 
 
 

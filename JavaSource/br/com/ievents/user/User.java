@@ -1,6 +1,8 @@
 package br.com.ievents.user;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,9 +10,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import br.com.ievents.events.Event;
+
 
 /**
  * 
@@ -42,6 +48,9 @@ public class User {
 	
 	@Column(name="role", nullable = false)
 	private String role;
+	
+	@OneToMany(mappedBy="user")
+	private Set<Event> events = new HashSet<Event>();
 	
 	public User() {}
 
@@ -92,6 +101,9 @@ public class User {
 	public void setRole(String role) {
 		this.role = role;
 	}
+	
+	public Set<Event> getEvents() {return events;}
+	public void setEvents(Set<Event> events) { this.events = events; }
 	
 	@Override
 	public String toString() {

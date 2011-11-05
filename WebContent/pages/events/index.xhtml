@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:rich="http://richfaces.org/rich">
+
+	<ui:composition template="/templates/internal.xhtml">
+		<ui:param name="title" value="Usuarios Cadastrados"></ui:param>
+		<ui:define name="left">
+			<h:form>
+				<h:commandLink value="Novo Event" action="#{eventBean.newEvent}" />
+			</h:form>
+			
+			<h:outputText value="Nenhum usuario encontrado"
+				rendered="#{empty eventBean.events}" />
+				
+			<h:form rendered="#{not (empty eventBean.events)}">
+				<rich:dataTable value="#{eventBean.events}" var="event"
+					styleClass="table">
+					<rich:column>
+						<f:facet name="header">
+							<h:outputText value="Username" />
+						</f:facet>
+						<h:outputText value="#{event.user.name}" />
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">
+							<h:outputText value="Name" />
+						</f:facet>
+						<h:outputText value="#{event.name}" />
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">
+							<h:outputText value="Text" />
+						</f:facet>
+						<h:outputText value="#{event.text}" />
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">
+							<h:outputText value="Actions" />
+						</f:facet>
+						<h:commandLink value="Edit" action="edit">
+							<f:setPropertyActionListener target="#{eventBean.event}" 
+								value="#{event}" />
+						</h:commandLink>
+						<h:outputText value="   |    " />
+					</rich:column>	
+				</rich:dataTable>
+			</h:form>						
+		</ui:define>
+	</ui:composition>
+</html>
