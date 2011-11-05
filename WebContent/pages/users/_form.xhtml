@@ -8,9 +8,7 @@
 	
 	<h:outputLabel value="Name" for="user_name" />
 	<br />
-	<h:inputText value="#{userBean.user.name}" id="user_name" label="Name"
-		required="true">
-		<f:validateLength minimum="3" maximum="60" />
+	<h:inputText value="#{userBean.user.name}" id="user_name" label="Name">
 		<rich:validator />
 	</h:inputText>
 	<rich:message for="user_name" />
@@ -38,9 +36,7 @@
 	
 	<h:outputLabel value="Birthday" for="user_dob" />
 	<br />
-	<rich:calendar value="#{userBean.user.dob}" id="user_dob" label="Birthday"
-		required="true">
-		<f:validateRequired />
+	<rich:calendar value="#{userBean.user.dob}" id="user_dob" label="Birthday">
 		<rich:validator />
 	</rich:calendar>
 	<rich:message for="user_dob" />

@@ -2,18 +2,45 @@ package br.com.ievents.user;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
 /**
  * 
  * @author ewerttonbravo
  *
  */
+@Entity
+@Table(name="usuarios")
+@NamedQueries({
+	@NamedQuery(name="findAllUser", query="from User")
+})
 public class User {
 	
+	@Id
+	@GeneratedValue
 	private Long id;
+	
+	@Column(name="user_name", nullable = false)
 	private String name;
+	
+	@Column(name="email", nullable = false)
 	private String email;
+	
+	@Column(name="password", nullable = false)
 	private String password;
+	
+	@Temporal(TemporalType.DATE)
 	private Date dob;
+	
+	@Column(name="role", nullable = false)
 	private String role;
 	
 	public User() {}

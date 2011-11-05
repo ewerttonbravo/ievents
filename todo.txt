@@ -22,7 +22,21 @@ Observações:
 =======================================================================	
 6) Crie um ManagedBean UserBean com uma lista de user, métodos para interagir com as views e permitir as operações de CRUD na lista.
 
-\\ 10.20.9.6
+
+
+7) Adicionar os arquivos de configuração do JPA
+- persistence.xml (Dentro da pasta META-INF em JavaSource)
+- log4j.properties na raiz da pasta JavaSource
+
+8) Criar o UserDao herdando de GenericDao
+9) Criar a Classe JPAUtil.java
+
+
+++++
+10) Anotar a entidade User.java
+11) Alterar UserBean.java para guardar no Banco de Dados
+++++
+
 
 
 
