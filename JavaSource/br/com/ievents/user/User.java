@@ -14,8 +14,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
@@ -24,6 +22,7 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import br.com.ievents.events.Event;
+import br.com.ievents.persistence.GenericModel;
 import br.com.ievents.validator.Role;
 
 
@@ -37,7 +36,7 @@ import br.com.ievents.validator.Role;
 @NamedQueries({
 	@NamedQuery(name="findAllUser", query="from User")
 })
-public class User {
+public class User extends GenericModel<User, Long> {
 	
 	@Id
 	@GeneratedValue
@@ -71,7 +70,9 @@ public class User {
 	@OneToMany(mappedBy="user")
 	private Set<Event> events = new HashSet<Event>();
 	
-	public User() {}
+	public User() {
+		super();
+	}
 
 	public Long getId() {
 		return id;

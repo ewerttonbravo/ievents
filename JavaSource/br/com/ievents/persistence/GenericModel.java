@@ -9,7 +9,7 @@ import javax.persistence.Query;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public abstract class GenericDAO<T, K> {
+public class GenericModel<T, K> {
 	private Logger logger;
 	
 	private EntityManager entityManager;
@@ -18,51 +18,61 @@ public abstract class GenericDAO<T, K> {
 	protected Class _class;
 	
 	@SuppressWarnings("rawtypes")
-	protected GenericDAO() {
-		this.entityManager = JPAUtil.getEntityManager();
+	protected GenericModel() {
+		//	this.entityManager = JPAUtil.getEntityManager();
 		ParameterizedType thisType = (ParameterizedType) getClass().getGenericSuperclass();  
 		this._class = (Class) thisType.getActualTypeArguments()[0];
 		this.logger = LoggerFactory.getLogger(this._class);
+	}
+	
+	private void initEntityManager() {
+		if (null == entityManager)
+			this.entityManager = JPAUtil.getEntityManager();
 	}
 	
 	public void closeConnection() {
 		this.entityManager.close();
 	}
 	
-	public void save(T obj) throws Exception {
+	public void save() throws Exception {
 		try {
-			entityManager.persist(obj);
+			initEntityManager();
+			entityManager.persist(this);
 		} catch (Exception ex) {
-			logger.error("Erro ao tentar salvar: " + obj, ex);
+			logger.error("Erro ao tentar salvar: " + this, ex);
 			throw new Exception();
 		}
 	}
 	
-	public void update(T obj) throws Exception  {
+	public void update() throws Exception  {
 		try {
-			entityManager.merge(obj);
-		} catch (Exception ex) {
-			logger.error("Erro ao tentar atualizar: " + obj, ex);
+			initEntityManager();
+			entityManager.merge(this);
+		} catch (Exception ex) { 	
+			logger.error("Erro ao tentar atualizar: " + this, ex);
 			throw new Exception();
 		}
 	}
 
-	public void delete(T obj) throws Exception  {
+	public void delete() throws Exception  {
 		try {
-			entityManager.remove(obj);
+			initEntityManager();
+			entityManager.remove(this);
 		} catch (Exception ex) {
-			logger.error("Erro ao tentar excluir: " + obj, ex);
+			logger.error("Erro ao tentar excluir: " + this, ex);
 			throw new Exception();
 		}
 	}
 
 	@SuppressWarnings("unchecked")
 	public T find(K id) {  
-        return ((T)entityManager.find(_class, id));  
+		initEntityManager();
+        return ((T) entityManager.find(_class, id));  
     }
 	
 	@SuppressWarnings("unchecked")
 	public List<T> findByField(String fieldName, Object value) {
+		initEntityManager();
 		Query query = entityManager.createNamedQuery("find"+_class.getSimpleName()+"By"+fieldName);
 		query.setParameter(fieldName.toLowerCase(), value);
 		return query.getResultList();
@@ -70,9 +80,7 @@ public abstract class GenericDAO<T, K> {
 	
 	@SuppressWarnings("unchecked") 
 	public List<T> findAll() {
+		initEntityManager();
 		return entityManager.createNamedQuery("findAll"+_class.getSimpleName()).getResultList();
 	}
-	
-	
-	
 }

@@ -3,39 +3,59 @@ package br.com.ievents.persistence;
 import java.io.IOException;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
-import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 @WebFilter(servletNames="Faces Servlet")
 public class JPAFilter implements javax.servlet.Filter {
 
-	private EntityManagerFactory emf;
+	private static Log log = LogFactory.getLog(JPAFilter.class);
+	
+	private EntityManager em;
 	
 	@Override
 	public void destroy() {
-		emf.close();
 	}
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
-		EntityManager em = emf.createEntityManager();
-		((HttpServletRequest) request).getSession().setAttribute("entityManager", em);
-		
-		emf.createEntityManager();
-		chain.doFilter(request, response);
+		try {
+			log.info("begin transaction");
+			if (!em.getTransaction().isActive())
+				em.getTransaction().begin();
+
+			chain.doFilter(request, response);
+			
+			log.info("commit transaction");
+			if (em.getTransaction().isActive())
+				em.getTransaction().commit();
+			
+		} catch (Throwable e) {
+			log.error(e.getMessage(), e);
+			try {
+				if (em.getTransaction().isActive()) {
+					log.info("Trying to rollback database transaction after exception");
+					em.getTransaction().rollback();
+				}
+			} catch (Throwable e2) {
+				log.error("Could not rollback transaction after exception!", e2);
+			}
+			throw new ServletException(e);
+		}
 	}
 
 	@Override
 	public void init(FilterConfig arg0) throws ServletException {
-		emf = Persistence.createEntityManagerFactory("ieventsPU");
+		log.debug("get entityManager from JPAUtil");
+		em = JPAUtil.getEntityManager();
 	}
 
 }
