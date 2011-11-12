@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:r="http://richfaces.org/rich">
+
+<ui:composition template="/templates/internal.xhtml">
+	<ui:param name="title" value="Login"></ui:param>
+	<ui:define name="right">
+		<r:panel header="Login Form asdfasdfasdfasdf">
+			<br />
+			<h:form prependId="false">
+				<h:panelGrid columns="2">
+					<h:outputLabel value="Email:" for="login_email" />
+					<h:inputText value="#{authenticationBean.email}" id="login_email" />
+
+					<h:outputLabel value="Senha:" for="login_password" />
+					<h:inputSecret value="#{authenticationBean.password}" id="login_password" />
+				</h:panelGrid>
+				<h:commandButton value="Login" action="#{authenticationBean.doLogin}" />
+				<br/>
+				ou
+				<br/>
+				<h:commandLink action="login" value="Cadastre-se aqui" immediate="true"/>
+			</h:form>
+		</r:panel>
+	</ui:define>
+</ui:composition>
+</html>

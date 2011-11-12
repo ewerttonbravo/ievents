@@ -10,7 +10,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.NoResultException;
+import javax.persistence.NonUniqueResultException;
 import javax.persistence.OneToMany;
+import javax.persistence.Query;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -34,7 +37,9 @@ import br.com.ievents.validator.Role;
 @Entity
 @Table(name="usuarios")
 @NamedQueries({
-	@NamedQuery(name="findAllUser", query="from User")
+	@NamedQuery(name="findAllUser", query="from User"),
+	@NamedQuery(name="findByEmailAndPassword", query="select u from User u where " +
+			"u.email = :email and u.password = :password")
 })
 public class User extends GenericModel<User, Long> {
 	
@@ -153,5 +158,17 @@ public class User extends GenericModel<User, Long> {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+	
+	public User findByEmailAndPassword(String email, String password) throws NonUniqueResultException {
+		initEntityManager();
+		Query query = entityManager.createNamedQuery("findByEmailAndPassword");
+		query.setParameter("email", email);
+		query.setParameter("password", password);
+		try {
+			return (User) query.getSingleResult();
+		} catch (NoResultException ne) {
+			return null;
+		}
 	}
 }

@@ -44,6 +44,12 @@ Observações:
 15) Disponibilize um currentUser no escopo de sessão
 
 
+15) Colocar o arquivo _login.xhtml dentro de WebContent e renomear para login.xhtml
+15) Pagina
+17) Ajustar o Navigation
+
+
+
 
 
 

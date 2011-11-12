@@ -18,6 +18,10 @@
 					<h:graphicImage value="/resources/img/logo.png" />
 				</div>
 				<div id="session" class="grid_8">
+					<h:form rendered="#{loggedIn}">
+						<h:commandLink action="#{authenticationBean.doLogout}" value="Sair" 
+							immediate="true"/>
+					</h:form>
 				</div>
 			</div>
 			<div id="nav" class="grid_12">

@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
 public class GenericModel<T, K> {
 	private Logger logger;
 	
-	private EntityManager entityManager;
+	protected EntityManager entityManager;
 	
 	@SuppressWarnings("rawtypes")
 	protected Class _class;
@@ -25,7 +25,7 @@ public class GenericModel<T, K> {
 		this.logger = LoggerFactory.getLogger(this._class);
 	}
 	
-	private void initEntityManager() {
+	protected void initEntityManager() {
 		if (null == entityManager)
 			this.entityManager = JPAUtil.getEntityManager();
 	}

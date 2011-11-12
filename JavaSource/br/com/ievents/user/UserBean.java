@@ -30,8 +30,8 @@ public class UserBean extends AbstractManagedBean {
 //		userDao = new UserDao();
 		user = new User();
 		buscarUsers();
-		User u = user.find(2l);
-		getHttpSession().setAttribute("currentUser", u);
+//		User u = user.find(2l);
+//		getHttpSession().setAttribute("currentUser", u);
 	}
 	
 	public void buscarUsers() {
